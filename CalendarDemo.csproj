@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <UserSecretsId>aspnet-IAMCP_Demo_MVC-63037E33-AD8E-4CE4-8CC3-27F9BD7E2CE8</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.7" NoWarn="NU1605" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="5.0.7" NoWarn="NU1605" />
+    <PackageReference Include="Microsoft.Identity.Web" Version="1.14.0" />
+    <PackageReference Include="Microsoft.Identity.Web.MicrosoftGraph" Version="1.14.0" />
+    <PackageReference Include="Microsoft.Identity.Web.UI" Version="1.14.0" />
+    <PackageReference Include="Syncfusion.EJ2.AspNet.Core" Version="19.2.0.44" />
+  </ItemGroup>
+
+</Project>

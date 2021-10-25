@@ -1,0 +1,51 @@
+﻿@using Syncfusion.EJ2
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">My Calendar</h1>
+</div>
+
+<div class="control-section">
+    <ejs-schedule id="schedule" height="650" selectedDate="DateTime.Now" actionComplete="onActionComplete">
+        <e-schedule-eventsettings dataSource="@ViewBag.appointments"></e-schedule-eventsettings>
+    </ejs-schedule>
+
+    <script src="~/scripts/schedule/applyCategoryColor.js"></script>
+
+    <script type="text/javascript">
+        function onEventRendered(args) {
+            var scheduleObj = document.getElementById('schedule').ej2_instances[0];
+            var categoryColor = args.data.CategoryColor;
+            if (!args.element || !categoryColor) {
+                return;
+            }
+            if (scheduleObj.currentView === 'Agenda') {
+                (args.element.firstChild).style.borderLeftColor = categoryColor;
+            } else {
+                args.element.style.backgroundColor = categoryColor;
+            }
+        }
+
+        function onActionComplete(args) {
+            if (args.requestType === 'eventCreated' || args.requestType === 'eventChanged') {
+                $.ajax({
+                    type: "POST",
+                    contentType: "application/json",
+                    url: "/Home/UpsertData", // the URL of the controller action method
+                    data: JSON.stringify(args.data[0]), // optional data
+                    success: function (result) {
+                        console.info("done");
+                        // do something with result
+                    },
+                    error: function (req, status, error) {
+                        // do something with error
+                        console.error(error);
+                    }
+                });
+            }
+        }
+    </script>
+</div>
